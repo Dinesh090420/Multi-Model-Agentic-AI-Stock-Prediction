@@ -1,0 +1,97 @@
+
+##################################################################################
+                       PHASE 1 - BiLSTM FORECASTING RESULTS                       
+##################################################################################
+
+==================================================================================
+PER-STOCK RESULTS (each row = one independently trained BiLSTM)
+==================================================================================
+  Stock   Experiment                           MAE      RMSE    MAPE %  Feats       Weights
+  -------------------------------------------------------------------------------
+  AAPL    YFinance Only                     2.6375    3.4547    1.7016     27  587d71d6cddd
+  AAPL    YFinance + Social                 2.6475    3.4758    1.7085     34  1d63d1e0c726
+  AAPL    YFinance + Historical News        2.6487    3.4720    1.7091     34  86b39112fb06
+  AAPL    YFinance + News + Social          2.6497    3.4810    1.7102     48  b502fb04e064
+
+  MSFT    YFinance Only                     3.1181    4.4753    1.2309     27  9bdc88ec9b47
+  MSFT    YFinance + Social                 3.1619    4.5102    1.2483     34  f08ecccd9b37
+  MSFT    YFinance + Historical News        3.1581    4.5075    1.2466     34  ed2b6b8fc89c
+  MSFT    YFinance + News + Social          3.1748    4.5160    1.2543     48  6d96ebeed4d5
+
+  GOOGL   YFinance Only                     1.6487    2.3231    1.5471     27  62bec2d66b46
+  GOOGL   YFinance + Social                 1.6483    2.3224    1.5466     34  61304d410323
+  GOOGL   YFinance + Historical News        1.6466    2.3217    1.5449     34  6cbd85231617
+  GOOGL   YFinance + News + Social          1.6685    2.3436    1.5671     48  f44a6969c88e
+
+==================================================================================
+SUMMARY BY EXPERIMENT (mean of the per-stock values above)
+==================================================================================
+  Experiment                             MAE      RMSE    MAPE %
+  --------------------------------------------------------------
+  YFinance Only                       2.4681    3.4177    1.4932  <- baseline-compatible
+  YFinance + Social                   2.4859    3.4361    1.5011
+  YFinance + Historical News          2.4845    3.4337    1.5002
+  YFinance + News + Social            2.4977    3.4469    1.5105
+  (per-stock table is primary; averaged MAE/RMSE mix dollar scales.)
+
+==================================================================================
+HISTORICAL NEWS SOURCE (offline, training)
+==================================================================================
+  Source : OFFLINE CORPUS (historical_news.csv)  (5,548 articles)
+  Live NewsAPI was NOT used for training and nothing was back-dated.
+    AAPL      2271 articles | 203/203 trading days covered | 0 days without news
+    MSFT      1213 articles | 201/203 trading days covered | 2 days without news
+    GOOGL     1181 articles | 201/203 trading days covered | 2 days without news
+
+==================================================================================
+FINBERT CLASSIFICATION EVALUATION
+==================================================================================
+  Accuracy / Precision / Recall / F1 : N/A
+  Classification metrics unavailable: no independent ground-truth sentiment labels exist. FinBERT's own output is never its own truth.
+  Optional: data/labelled_news_eval.csv (columns text,label).
+
+==================================================================================
+NEWS SENTIMENT
+==================================================================================
+  Classification metrics unavailable: no independent ground-truth sentiment labels exist. FinBERT's own output is never its own truth.
+
+  Scope                          Positive  Neutral Negative   Prec    Rec     F1
+  ------------------------------------------------------------------------------
+  Historical corpus (training)        399      972      900    N/A    N/A    N/A
+    items 2271 | avg sentiment -0.2044 | source: offline corpus
+  Live NewsAPI (LIVE-ONLY)              0        0        0    N/A    N/A    N/A
+    items 0 | avg sentiment N/A | coverage 0.0% | source: unavailable
+
+==================================================================================
+SOCIAL SENTIMENT
+==================================================================================
+  Classification metrics unavailable: no independent ground-truth sentiment labels exist. FinBERT's own output is never its own truth.
+
+  Scope                           Bullish  Neutral  Bearish   Prec    Rec     F1
+  ------------------------------------------------------------------------------
+  Historical (stock_tweets.csv)       497     3627      665    N/A    N/A    N/A
+    items 4789 | avg sentiment -0.0329 | coverage 88.9% | source: HISTORICAL CSV (stock_tweets.csv)
+  Live StockTwits (LIVE-ONLY)           0        0        0    N/A    N/A    N/A
+    items 0 | avg sentiment N/A | coverage 0.0% | source: unavailable
+
+==================================================================================
+VALIDATION - SEPARATE TRAINING CONFIRMATION
+==================================================================================
+  [✓] YFinance Only                    trained separately on 3 stock(s); weights: 587d71d6cddd, 9bdc88ec9b47, 62bec2d66b46
+  [✓] YFinance + Social                trained separately on 3 stock(s); weights: 1d63d1e0c726, f08ecccd9b37, 61304d410323
+  [✓] YFinance + Historical News       trained separately on 3 stock(s); weights: 86b39112fb06, ed2b6b8fc89c, 6cbd85231617
+  [✓] YFinance + News + Social         trained separately on 3 stock(s); weights: b502fb04e064, 6d96ebeed4d5, f44a6969c88e
+
+==================================================================================
+BEST EXPERIMENT
+==================================================================================
+  Lowest mean MAPE: YFinance Only (1.4932 %)
+
+==================================================================================
+BASELINE-PAPER COMPARISON POINT
+==================================================================================
+  Use 'YFinance Only' (E1) - price features only. Compare on MAE /
+  RMSE / MAPE only; sentiment statistics are not comparable.
+  'YFinance + News + Social' (E4) is the Phase-1 hybrid result.
+
+##################################################################################

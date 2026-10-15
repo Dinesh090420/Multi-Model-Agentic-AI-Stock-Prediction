@@ -1,0 +1,34 @@
+# ---- Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ---- Virtual environment
+.venv/
+venv/
+
+# ---- Secrets (never commit)
+.env
+.env.*
+!.env.example
+
+# ---- Large / licensed datasets (keep local; see README "Data")
+data*/
+.cache/
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.h5
+
+# ---- Logs and scratch
+logs/
+*.log
+results_h5/
+
+# ---- OS / editor
+.DS_Store
+.AppleDouble
+.vscode/
+.idea/

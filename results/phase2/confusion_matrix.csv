@@ -1,0 +1,13 @@
+Stock,Model,true_SELL_pred_SELL,true_SELL_pred_HOLD,true_SELL_pred_BUY,true_HOLD_pred_SELL,true_HOLD_pred_HOLD,true_HOLD_pred_BUY,true_BUY_pred_SELL,true_BUY_pred_HOLD,true_BUY_pred_BUY
+AAPL,BiLSTM,4,11,0,1,1,0,1,7,0
+AAPL,GRU,6,3,6,0,1,1,5,0,3
+AAPL,Transformer,0,14,1,0,2,0,0,8,0
+AAPL,Ensemble,0,14,1,0,2,0,0,7,1
+MSFT,BiLSTM,0,0,14,0,0,9,0,0,6
+MSFT,GRU,0,0,14,0,0,9,0,0,6
+MSFT,Transformer,1,2,11,0,0,9,0,1,5
+MSFT,Ensemble,0,0,14,0,0,9,0,0,6
+GOOGL,BiLSTM,3,9,1,0,5,0,2,4,1
+GOOGL,GRU,1,1,11,0,2,3,1,0,6
+GOOGL,Transformer,0,0,13,1,0,4,0,0,7
+GOOGL,Ensemble,1,0,12,0,1,4,0,0,7
